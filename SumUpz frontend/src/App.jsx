@@ -1,8 +1,9 @@
 import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import Home from "./pages/Home";
-import Summary from "./pages/Summary"
+import Summary from "./pages/Summary";
 import "./App.css";
+import React from "react";
 
 function App() {
   return (
@@ -13,14 +14,6 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-
-      {/*<Home />*/}
-
-      
-      <Summary />
-      
-      
-
       <div className="card"></div>
     </div>
   );
