@@ -1,10 +1,10 @@
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
+import CircularProgress from '@mui/material/CircularProgress'
 import Typography from '@mui/material/Typography'
 import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { TextContext } from '../context/context'
-
 function Summary() {
   const navigate = useNavigate()
 
@@ -32,25 +32,33 @@ function Summary() {
   const [guidingQuestions, setGuidingQuestions] = useState('')
   const [imageUrl, setImageUrl] = useState('')
   const [summary, setSummary] = useState('')
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     async function fetchApi(text) {
+      setLoading(true)
       const res = await fetch('http://localhost:3000/', {
+        mode: 'cors',
         method: 'POST',
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ prompt: text }),
-      })
+      }).then((res) => res.json())
 
-      console.log(res)
-      // setImageUrl(res.data.imageUrl)
-      // setGuidingQuestions(res.data.guidingQuestions)
-      // setSummary(res.data.summary)
+      setImageUrl(res.data.imageUrl)
+      setGuidingQuestions(res.data.guidingQuestions)
+      setSummary(res.data.summary)
+      setLoading(false)
     }
-    fetchApi()
+    fetchApi(text)
+    setText('')
   }, [])
+
+  if (loading) {
+    return <CircularProgress />
+  }
 
   return (
     <Box
@@ -73,22 +81,23 @@ function Summary() {
           justifyContent: 'space-between',
         }}
       >
-        <Box>
+        <Box sx={{ paddingRight: '1rem' }}>
           <Typography sx={{ margin: '1rem 0' }} variant="h5">
             Guiding Questions
           </Typography>
-          {guidingText.map((str, idx) => (
+          {guidingQuestions.split('\n').map((str, idx) => (
             <Typography variant="body1" key={idx} lineHeight={1.7}>
               {str}
             </Typography>
           ))}
         </Box>
-
-        {imageUrl && <img src={imageUrl} alt="Text image"></img>}
+        <Box sx={{ objectFit: 'cover', width: '512px', margin: '1rem 0' }}>
+          {imageUrl && <img src={imageUrl} alt="Text image"></img>}
+        </Box>
       </Box>
       <Box
         sx={{
-          maxWidth: '140ch',
+          maxWidth: '120ch',
         }}
       >
         <Typography variant="body1" color="text.primary" lineHeight={1.8}>
@@ -104,10 +113,7 @@ function Summary() {
       >
         <Button
           variant="contained"
-          onClick={() => {
-            setText('')
-            navigateToHome()
-          }}
+          onClick={navigateToHome}
           sx={{
             margin: 2,
           }}
