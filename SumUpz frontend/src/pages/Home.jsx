@@ -1,11 +1,12 @@
+import MenuBookIcon from '@mui/icons-material/MenuBook'
 import SendIcon from '@mui/icons-material/Send'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
-import MenuBookIcon from '@mui/icons-material/MenuBook'
 import Typography from '@mui/material/Typography'
+import { useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { TextContext } from '../context/context'
 
 function Home() {
   const navigate = useNavigate()
@@ -13,6 +14,10 @@ function Home() {
   const navigateToSummary = () => {
     navigate('/summary')
   }
+
+  const context = useContext(TextContext)
+  const text = context.text
+  const setText = context.setText
 
   return (
     <div>
@@ -39,7 +44,14 @@ function Home() {
           margin: 2,
         }}
       >
-        <TextField multiline fullWidth id="fullWidth" />
+        <TextField
+          multiline
+          fullWidth
+          id="fullWidth"
+          onChange={(e) => setText(e.target.value)}
+        >
+          {text}
+        </TextField>
       </Box>
       <Button
         variant="contained"
