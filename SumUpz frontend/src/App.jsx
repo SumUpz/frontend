@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Summary from "./pages/Summary";
 import "./App.css";
 import React from "react";
+import MenuBookIcon from "@mui/icons-material/MenuBook";
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
       <div>
         <a href="https://vitejs.dev" target="_blank"></a>
         <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
+          <MenuBookIcon style={{ fontSize: 150 }} />
         </a>
       </div>
       <div className="card"></div>
