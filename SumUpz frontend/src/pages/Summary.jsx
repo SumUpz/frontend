@@ -47,6 +47,7 @@ function Summary() {
         body: JSON.stringify({ prompt: text }),
       }).then((res) => res.json())
 
+      console.log(res)
       setImageUrl(res.data.imageUrl)
       setGuidingQuestions(res.data.guidingQuestions)
       setSummary(res.data.summary)
@@ -101,7 +102,7 @@ function Summary() {
         }}
       >
         <Typography variant="body1" color="text.primary" lineHeight={1.8}>
-          {summarizedText}
+          {summary}
         </Typography>
       </Box>
 
