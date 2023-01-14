@@ -38,8 +38,15 @@ function Summary() {
           </CardContent>
         </CardActionArea>
       </Card>
+
       <div>
-        <Button variant="contained" onClick={navigateToHome}>
+        <Button
+          variant="contained"
+          onClick={navigateToHome}
+          sx={{
+            margin: 2,
+          }}
+        >
           Go back!
         </Button>
       </div>
