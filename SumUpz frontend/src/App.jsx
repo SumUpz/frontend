@@ -1,23 +1,18 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import Home from "./pages/Home";
-import Summary from "./pages/Summary";
-import "./App.css";
-import React from "react";
-import MenuBookIcon from "@mui/icons-material/MenuBook";
+import React from 'react'
+import './App.css'
+import Home from './pages/Home'
+import Summary from './pages/Summary'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
 function App() {
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank"></a>
-        <a href="https://reactjs.org" target="_blank">
-          <MenuBookIcon style={{ fontSize: 150 }} />
-        </a>
-      </div>
-      <div className="card"></div>
-    </div>
-  );
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/summary" element={<Summary />} />
+      </Routes>
+    </Router>
+  )
 }
 
-export default App;
+export default App
