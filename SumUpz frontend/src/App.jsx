@@ -1,6 +1,7 @@
 import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import Home from "./pages/Home";
+import Summary from "./pages/Summary"
 import "./App.css";
 
 function App() {
@@ -13,7 +14,12 @@ function App() {
         </a>
       </div>
 
-      <Home />
+      {/*<Home />*/}
+
+      
+      <Summary />
+      
+      
 
       <div className="card"></div>
     </div>
