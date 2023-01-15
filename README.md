@@ -56,3 +56,6 @@ OpenAI API has a lot of potential to solve many issues
 
 ## What's next for SumUpz
 We wish to incorporate the ability to upload files and listen to sounds/music
+
+## View our demo 
+Here is our [demo](https://www.youtube.com/watch?v=RosV5WHP-0U&feature=youtu.be)
